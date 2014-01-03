@@ -1,0 +1,87 @@
+* GENERAL
+** use more than one file
+** label formulae (every) use names you won't forget
+** label sections
+** just label everything you might need
+** use your editor for labeling
+** don't do stuff by hand
+** use lacheck
+* LATEX
+** don't use $$ -> deprecated
+** use bibtex
+** useful Packages
+*** \usepackage{todonotes}
+*** \usepackage[sumlimits,intlimits]{amsmath}
+**** \DeclareMathOperator
+*** \usepackage{amsfonts,amssymb,bbm,wasysym,mathrsfs} %fonts
+*** \usepackage{mathtools}
+**** \mathtoolsset{showonlyrefs}
+*** \usepackage{unicode-math} % allows you to write $Σ_{i=1}^nα_ix^i$ and stuff
+*** \usepackage{enumerate} % customizable enumerate - I like (i) blah, (ii) blubb
+*** \usepackage{tocloft} % table of contents, list of figures, list of tables
+*** \usepackage{lipsum} % for filling text
+*** \usepackage{graphicx}
+*** \usepackage{tikz}
+*** \usepackage{hyperref}
+*** \usepackage{xcolor}
+*** \usepackage{color} -- for named colors
+**** \definecolor{grey}{rgb}{0.65, 0.65, 0.65}
+*** \usepackage{amsthm}
+**** \renewcommand{\thmnumber}{\arabic{section}.\thenumber}
+**** \newtheorem{thm}{Theorem}[chapter]
+**** \newtheorem{dfn}[thm]{Definition} % def is already taken
+** Numbering of things
+*** renewcommand{\thechapter}{\Roman{chapter}}
+*** \thesection, \thesubsection, \theequation
+** killcontents
+*** %\usepackage{environ} % just removes the proofs
+*** %\NewEnviron{killcontents}{}{}
+*** %\let\proof\killcontents
+*** %\let\endproof\endkillcontents
+** showkeys
+*** %\usepackage[notcite,notref]{showkeys} % draws labelnames with the foo labeled f***s up amsthm
+*** %\renewcommand*\showkeyslabelformat[1]{\tiny(#1)\normalsize}
+** styleguide
+*** \usepackage[l2tabu,orthodox]{nag}
+*** \usepackage{fixltx2e}
+*** \usepackage[all,error]{onlyamsmath}
+** layout testing - aka irgendwas schaut aber komisch aus
+*** %\usepackage{showframe}
+** THINGS TO KNOW
+*** Latex usepackages can conflict depending on the sequence you import them
+* RESEARCH
+** use libgen.info
+** use bookfi.com
+** Google books/scholar -> export bibtex
+** tex.stackexchange.com -> is your best friend
+** stackoverflow.com
+** math.stackexchange.com
+* EDITOR
+** know your editor
+*** use a sensible ColorScheme
+*** SNIPPETS
+*** SyncTex
+*** WordCompletion ??
+*** auto correction -> misuse for $\alpha$ -> $α$
+*** use spell checking
+*** use line numbers
+*** autoclose braces, brackets, parens and dollars
+*** indentation -> tabs/spaces
+*** line width 80 characters -> helps find latex errors
+** Editors
+*** Anywhere
+**** Vim
+**** emacs
+**** texmaker/texstudio
+**** Eclipse
+*** Windows
+**** WinEdt
+**** TeXnicCenter
+*** Mac OSX
+**** TeXShop
+*** Linux
+**** gedit
+**** gummi
+* Advanced stuff
+** use precompiled graphics when working with tikz
+** use git and backup e.g. dropbox (if you're not paranoid)
