@@ -1,0 +1,350 @@
+\documentclass{beamer}
+    \usetheme{Frankfurt}
+    \usecolortheme{seahorse}
+
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\else
+  \usepackage{fontspec}
+  \setmonofont{DejaVu Sans Mono}
+  \usepackage{unicode-math}
+\fi
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{newunicodechar}
+\usepackage{hhline}
+\usepackage{menukeys}
+\usepackage{fancyvrb}
+\usepackage{todonotes}
+
+\newunicodechar{✔}{\ensuremath{\checkmark}}
+
+\title{Thesis,~\LaTeX and me}
+\author{Martin Heuschober}
+\institute{}
+
+
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \tableofcontents
+\end{frame}
+
+\section{WTF}
+\label{sec:wtf}
+
+\subsection{}
+\begin{frame}{Worum geht's hier??}
+    Ich möchte heute ein paar Tipps und Tricks zeigen mit denen man sein Leben mit
+    Latex erleichtern kann und sich mehr aufs Beweisen als aufs Tippen
+    konzentrieren kann.
+\end{frame}
+
+\begin{frame}{Erstmal ein paar generelle Anmerkungen}
+    \begin{itemize}
+        \item Benutze mehr als eine Datei\\
+              z.B. präambel.tex, kapitel1.tex, kapitel2.tex und binde diese in
+              diplomarbeit.tex ein
+        \item Lable alle Formeln
+        \item Lable sections, subsections, chapter
+        \item Lable einfach alles was du möglicherweise irgendwann brauchst
+        \item Lass deinen Editor alles labeln
+        \item Überlasse generell die unangenehmen Aufgaben deinem Editor
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Recherche ist auch notwendig}
+    Nur geh' ich ungern in die Bibliothek um zu sehen, dass das Buch (a) nicht
+    da ist, (b) doch nicht richtig ist.\\
+    Deswegen liebe Leute nutzt das Internet
+    \begin{itemize}
+        \item \url{http://libgen.info}
+        \item \url{http://bookfi.com}
+        \item \url{http://books.google.com}
+        \item \url{http://http://scholar.google.com}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{aber auch für LaTeX ist das Internet gut}
+    \begin{itemize}
+        \item \url{http://www.google.com}
+        \item \url{http://tex.stackexchange.com}\\
+            registrieren ist notwendig aber das System ist s-u-p-e-r
+        \item \url{http://stackoverflow.com}\\
+            eher für programmieren, aber das kommt ja auch manchmal vor z.B.~in
+            einer Numerikvorlesung (Matlab/Octave), Mathematica (ist oft
+            nützlich), Algorithmen und Datenstrukturen (Java).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{und für Mathematik auch!}
+    \begin{itemize}
+        \item \url{http://math.stackexchange.com}
+        \item \url{http://mathoverflow.net}
+    \end{itemize}
+\end{frame}
+
+\section{Editors}
+\label{sec:editors}
+
+\subsection{}
+\begin{frame}{Welches Betriebssystem, welcher Editor}
+    \begin{center}
+        \begin{tabular}{c|ccc}
+                         & \textbf{Windows} & \textbf{Mac} & \textbf{Linux} \\ \hhline{=|===}
+            TexMaker     & ✔                & ✔            & ✔              \\
+            gVim         & ✔                & ✔            & ✔              \\
+            emacs        & ✔                & ✔            & ✔              \\
+            Eclipse      & ✔                & ✔            & ✔              \\ \hline
+            TexShop      &                  & ✔            &                \\ \hline
+            WinEDT       & ✔                &              &                \\
+            TeXnicCenter & ✔                &              &                \\ \hline
+            gEdit        &                  &              & ✔              \\
+            gummi        &                  &              & ✔              \\
+            kate         &                  &              & ✔
+        \end{tabular}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Was sollte ein Editor können?}
+    \begin{enumerate}
+        \item Syntax highlighting
+        \item AutoCompletion, automatisches einfügen von Text\\
+              z.B. \$ $→$ \$|\$\\
+              z.B. $\{$ $→$ $\{|\}$\\
+              wobei $|$ die position des Cursors sein sollte
+        \item Snippets, soll heißen mit <Tab> o.Ä. ausgelöste Ersetzung von Text
+            z.B. \texttt{pac}\keys{\tab} $→$ \texttt{\backslash usepackage\{|\}}
+        \item Rechteckauswahl - angenehm fürs schön machen von Tabellen und Co.
+        \item Auto Alignment wieder fürs schön machen von Gleichungen und
+              Tabellen
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Was sollte ein Editor können?}
+    \begin{enumerate}\setcounter{enumi}{5}
+        \item text-wrapping = automatischer Zeilenumbruch
+        \item synctex = synchronisation von der aktuellen bearbeiteten Stelle im
+              Quellcode mit der Stelle im PDF-Output
+        \item Suchen und Ersetzen besser noch mit Regular Expressions!
+        \item Automatische Einrückung (indentation) von Text
+        \item Schnelles Kompilieren und bearbeiten von Errors und Warnings
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Der Apfel und seine Eigenheiten}
+    \begin{itemize}
+        \item Keyboard - \backslash, $\{$, $\}$ \$, $[$, $]$ sind ungemütlich zu
+            tippen, da kann AutoCorrection behilflich sein\\
+            z.B. üü $→$ \backslash, öö $→$ $\{$
+        \item TeXshop kann AutoCompletion und AutoCorrection wobei Completion schon
+            ein wenig gefinkelt zum selber basteln ist
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Das Fenster zur Welt}
+    Ich muss zugeben mit MS Windows wenig Erfahrung zu haben, deshalb kann ich
+    nichts zu TeXnicCenter sagen und würde eher Eclipse mit dem Plugin TeXlipse
+    empfehlen, da TexMaker zwar schon okay ist aber Eclipse weitaus mächtiger
+    ist.
+\end{frame}
+
+\begin{frame}{Pinguin und Teufelchen}
+    Die Linux/Unix Welt bietet viele Möglichkeiten abgesehen von Werkzeugen aus
+    den alten Tagen als man Computer noch in Nullen und Einsen programmiert hat,
+    gibt es schon einige neue Editoren ‘gummi’ und ‘gEdit’ sind zwei Beispiele
+    aus der Gnome-Ecke, ‘Kile’ und ‘Kate’ aus der KDE-Ecke.\\
+
+    Mein Favorit ist ‘Vim’, da ich mich doch recht lange damit
+    auseinander gesetzt habe. ‘gEdit’ hat eine recht ansehnliche Liste an
+    Plugins die den Editor benutzbar machen. ‘gummi’ ist eine relativ neue
+    Entwicklung, hat integrierte Vorschau, snippets aber keine Dollar-/Klammervervollständigung
+    sieht aber vielversprechend aus.
+\end{frame}
+
+\begin{frame}{DEMO}
+    \begin{center}
+        \Huge DEMO
+    \end{center}
+\end{frame}
+
+\section{Usepackages}
+\label{sec:usepackages}
+
+\subsection{}
+\begin{frame}{Wissenswertes über LaTeX}
+    \begin{itemize}
+        \item ACHTUNG usepackages können untereinander in Konflikt stehen und es kommt
+              noch besser, die REIHENFOLGE in denen man usepackages einbindet ist
+              relevant!
+        \item  don't use \$\$ ist veraltet
+        \item  use bibtex
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zum organisieren}
+    \footnotesize
+    \begin{verbatim}
+\usepackage{todonotes}
+\end{verbatim}
+    \normalsize
+    fügt nette Randnotizen und ein Verzeichnis derer ein.
+\end{frame}
+
+\begin{frame}[fragile]{Zum organisieren}
+    \footnotesize
+    \begin{verbatim}
+\usepackage[notcite,notref]{showkeys}
+\renewcommand*\showkeyslabelformat[1]{\tiny(#1)\normalsize}
+    \end{verbatim}
+    \normalsize
+fügt Labelnamen an den gelabeleten Stellen ein, aber f***s up amsthm
+\end{frame}
+
+\begin{frame}[fragile]{Zum organisieren}
+    \footnotesize
+    \begin{verbatim}
+\usepackage{environ} % just removes the proofs
+\NewEnviron{killcontents}{}{}
+\let\proof\killcontents
+\let\endproof\endkillcontents
+    \end{verbatim}
+    \normalsize
+versteckt die Beweise angenehm zum neu Strukturieren der Arbeit
+\end{frame}
+
+\begin{frame}[fragile]{Layout testing - aka irgendwas schaut komisch aus}
+    \begin{verbatim}
+        \usepackage{showframe}
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{The math typesetting stuff}
+    \footnotesize
+\begin{verbatim}
+\usepackage[sumlimits,intlimits]{amsmath}
+    \DeclareMathOperator{sec}{\sec} % sectional curvature
+\end{verbatim}
+\pause
+\begin{verbatim}
+\usepackage{amsfonts,amssymb,bbm,wasysym,mathrsfs}
+\end{verbatim}
+\pause
+\begin{verbatim}
+\usepackage{mathtools}
+    \mathtoolsset{showonlyrefs}
+    % zeigt nur die verwendeten Referenzen an
+\end{verbatim}
+\pause
+\begin{verbatim}
+\usepackages{amsthm}
+    \renewcommand{\thmnumber}{\arabic{section}.\thenumber}
+    \newtheorem{thm}{Theorem}[chapter]
+    \newtheorem{dfn}[thm]{Definition} % def is already taken
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Bunt ist toll und Bilder auch}
+\begin{verbatim}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{color} -- for named colors
+  \definecolor{grey}{rgb}{0.65, 0.65, 0.65}
+\end{verbatim}
+Besonders interessant ist hier das Paket ‘tikz’ das es erlaubt zu Zeichnen!
+\end{frame}
+
+\begin{frame}[fragile]{sonst noch Hilfreiches}
+    \begin{verbatim}
+\usepackage{hyperref}
+    \end{verbatim}
+    für Links im Dokument.
+    \pause
+    \begin{verbatim}
+\usepackage{enumerate}
+    \end{verbatim}
+    erlaubt es enumerate Umgebungen zu verändern.
+    \pause
+    \begin{verbatim}
+\usepackage{lipsum}
+    \end{verbatim}
+    für Blindtext.
+\end{frame}
+
+\begin{frame}[fragile]{sonst noch Hilfreiches}
+    \begin{verbatim}
+renewcommand{\thechapter}{\Roman{chapter}}
+\thesection, \thesubsection, \theequation
+    \end{verbatim}
+    Um die Art der Nummerierung zu verändern.
+\end{frame}
+
+\begin{frame}[fragile]{sonst noch Hilfreiches}
+    Und zu guter Letzt der Styleguide.
+    \begin{verbatim}
+\usepackage[l2tabu,orthodox]{nag}
+\usepackage{fixltx2e}
+\usepackage[all,error]{onlyamsmath}
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Für die Typesetting-Nerds ;-)}
+    \begin{verbatim}
+\usepackage{unicode-math}
+    \end{verbatim}
+    Nur in Verbindung mit LuaTex/XeTeX erlaubt es Formeln in Unicode setzen
+    \begin{verbatim}
+                \[
+                    ∑_{i=1}ⁿαᵢ
+                \]
+    \end{verbatim}
+        \[
+            ∑_{i=1}ⁿαᵢ
+        \]
+\end{frame}
+
+\section{Version Control}
+\label{sec:version_control}
+
+\subsection{}
+
+\begin{frame}{Problem - History - mehrere Rechner}
+    Heutzutage hat man gerne einen oder mehrere Laptop/Computer und schreibt
+    hier auf der Uni am Laptop, zu Hause am PC und man hat nicht immer Internet.
+    Oder man arbeitet mit mehreren Leuten an einem Projekt. Die selben Probleme
+    gibt es seit Jahren im Business Software Development.
+
+    Ein weiteres Problem ist die Geschichte; ich hätte gerne die Version von
+    letzter Woche meiner *arbeit wiederhergestellt, aber wie speichere ich das
+    ganze sinnvoll.
+\end{frame}
+\begin{frame}{Die Tools der Wahl heutzutage (stand 2014) sind:}
+    Git oder Mercurial, so genannte distributed version control systems.
+    \begin{itemize}
+        \item \url{http://git-scm.com/}
+        \begin{itemize}
+            \item \url{http://try.github.io}
+        \end{itemize}
+        \item \url{http://mercurial.selenic.com/}
+        \begin{itemize}
+            \item \url{http://hginit.com/}
+        \end{itemize}
+    \end{itemize}
+    Ich werde mich hier auf ‘git’ beziehen, weil ich das kann. Es gibt online
+    für beide Systeme tutorials.
+\end{frame}
+
+\begin{frame}[fragile]{DEMO}
+    \begin{center}
+        \Huge DEMO
+    \end{center}
+\end{frame}
+
+\end{document}

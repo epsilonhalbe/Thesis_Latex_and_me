@@ -1,0 +1,11 @@
+*.aux
+*._aux
+*.log
+*._log
+*.nav
+*.org
+*.out
+*.synctex.gz
+*.tex.project.vim
+*.toc
+.tmp/*
