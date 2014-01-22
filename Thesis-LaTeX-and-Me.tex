@@ -1,3 +1,8 @@
+% Author: Martin Heuschober
+% Date: 2014-01-22
+% Version: 1.0.0
+% License: CC BY-NC (http://creativecommons.org/licenses/?lang=de)
+
 \documentclass{beamer}
     \usetheme{Frankfurt}
     \usecolortheme{seahorse}
@@ -22,10 +27,11 @@
 
 \newunicodechar{✔}{\ensuremath{\checkmark}}
 
-\title{Thesis,~\LaTeX and me}
-\author{Martin Heuschober}
-\institute{}
-
+\title{Thesis,~\LaTeX~and me}
+\author{\texorpdfstring{Martin Heuschober\newline
+        \href{mailto:martin.heuschober@gmail.com}{martin.heuschober@gmail.com}\newline
+        \href{http://github.com/epsilonhalbe/Thesis_Latex_and_me}{http://github.com/epsilonhalbe}}
+        {Martin Heuschober}}
 
 \begin{document}
 \begin{frame}
@@ -67,7 +73,7 @@
         \item \url{http://libgen.info}
         \item \url{http://bookfi.com}
         \item \url{http://books.google.com}
-        \item \url{http://http://scholar.google.com}
+        \item \url{http://scholar.google.com}
     \end{itemize}
 \end{frame}
 
@@ -197,60 +203,57 @@
     fügt nette Randnotizen und ein Verzeichnis derer ein.
 \end{frame}
 
-\begin{frame}[fragile]{Zum organisieren}
-    \footnotesize
-    \begin{verbatim}
-\usepackage[notcite,notref]{showkeys}
-\renewcommand*\showkeyslabelformat[1]{\tiny(#1)\normalsize}
-    \end{verbatim}
-    \normalsize
-fügt Labelnamen an den gelabeleten Stellen ein, aber f***s up amsthm
-\end{frame}
-
-\begin{frame}[fragile]{Zum organisieren}
-    \footnotesize
-    \begin{verbatim}
-\usepackage{environ} % just removes the proofs
-\NewEnviron{killcontents}{}{}
-\let\proof\killcontents
-\let\endproof\endkillcontents
-    \end{verbatim}
-    \normalsize
-versteckt die Beweise angenehm zum neu Strukturieren der Arbeit
-\end{frame}
-
 \begin{frame}[fragile]{Layout testing - aka irgendwas schaut komisch aus}
+    \footnotesize
     \begin{verbatim}
-        \usepackage{showframe}
+\usepackage{showframe}
     \end{verbatim}
+    \normalsize
+    zeigt die begrenzenden Linien der verschiedenen Dokumentbereiche (body,
+    margin, etc.) an
 \end{frame}
 
 \begin{frame}[fragile]{The math typesetting stuff}
     \footnotesize
 \begin{verbatim}
+\usepackage{amsfonts,amssymb,bbm,wasysym,mathrsfs}
 \usepackage[sumlimits,intlimits]{amsmath}
     \DeclareMathOperator{sec}{\sec} % sectional curvature
+    \begin{equation}
+        \begin{split}
+            um eine sehr sehr sehr laaange\\
+            gleichung in teile zu teilen
+        \end{split}
+    \end{equation}
 \end{verbatim}
-\pause
-\begin{verbatim}
-\usepackage{amsfonts,amssymb,bbm,wasysym,mathrsfs}
-\end{verbatim}
-\pause
+\vspace*{-.3cm}
+\normalsize
+auch sehr nützlich das ‘split’ environment für lange equation
+\footnotesize
 \begin{verbatim}
 \usepackage{mathtools}
     \mathtoolsset{showonlyrefs}
-    % zeigt nur die verwendeten Referenzen an
 \end{verbatim}
-\pause
+\vspace*{-.3cm}
+\normalsize
+‘showonlyrefs‘ zeigt nur die verwendeten Referenzen an;\\
+mathtools stellt auch das ‘multiline’ environment zur Verfügung das auch
+lange Gleichungen teilen kann
+\end{frame}
+
+\begin{frame}[fragile]{Theoreme und so weiter}
+\footnotesize
 \begin{verbatim}
 \usepackages{amsthm}
     \renewcommand{\thmnumber}{\arabic{section}.\thenumber}
     \newtheorem{thm}{Theorem}[chapter]
     \newtheorem{dfn}[thm]{Definition} % def is already taken
 \end{verbatim}
+amsthm erlaubt es eigene theorem-artige Umgebungen zu definieren
 \end{frame}
 
 \begin{frame}[fragile]{Bunt ist toll und Bilder auch}
+\footnotesize
 \begin{verbatim}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -258,25 +261,54 @@ versteckt die Beweise angenehm zum neu Strukturieren der Arbeit
 \usepackage{color} -- for named colors
   \definecolor{grey}{rgb}{0.65, 0.65, 0.65}
 \end{verbatim}
-Besonders interessant ist hier das Paket ‘tikz’ das es erlaubt zu Zeichnen!
+\normalsize
+Besonders interessant ist hier das Paket ‘tikz’ das es erlaubt zu Zeichnen und
+wer nicht gerne Zeichnungen schreibt ;-) kann diese mit GeoGebra zeichnen und
+nach ‘tikz’ exportieren.
+\end{frame}
+
+\begin{frame}[fragile]{Mehr zu Bildern}
+Noch eine kleine Randbemerkung zu Bildern, wer gerne Bilder in seiner/ihrer
+*arbeit hat, wird höchstwahrscheinlich mit figure environment arbeiten
+\footnotesize
+\begin{verbatim}
+\begin{fig}[!h]
+    \includegraphics{./my-sexy-picture}
+    \caption{It is a really sexy picture}
+    \label{fig:sexypic1}
+\end{fig}
+\end{verbatim}
+die Option [!h] setzt das Bild höchstwahrscheinlich dorthin wo man es geplant
+hat, grundsätzlich gilt aber immer - floating figures positionieren nimmt mehr
+Zeit in Anspruch als geplant.
 \end{frame}
 
 \begin{frame}[fragile]{sonst noch Hilfreiches}
+    \footnotesize
+    \begin{verbatim}
+\newcommand[2]{ball}{\mathcal{B}_{#1}({#2})}
+    \end{verbatim}
+    \vspace*{-0.7cm}
+    eigene Kommandos am besten gleich mit snippet
+    \verb/\ball_{${1:radius}}(${2:center})/
     \begin{verbatim}
 \usepackage{hyperref}
     \end{verbatim}
+    \vspace*{-0.7cm}
     für Links im Dokument.
-    \pause
     \begin{verbatim}
 \usepackage{enumerate}
     \end{verbatim}
+    \vspace*{-0.7cm}
     erlaubt es enumerate Umgebungen zu verändern.
-    \pause
     \begin{verbatim}
 \usepackage{lipsum}
     \end{verbatim}
+    \vspace*{-0.7cm}
     für Blindtext.
+    \normalsize
 \end{frame}
+
 
 \begin{frame}[fragile]{sonst noch Hilfreiches}
     \begin{verbatim}
@@ -293,6 +325,28 @@ renewcommand{\thechapter}{\Roman{chapter}}
 \usepackage{fixltx2e}
 \usepackage[all,error]{onlyamsmath}
     \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Nochmal organisieren}
+    \footnotesize
+    \begin{verbatim}
+\usepackage[notcite,notref]{showkeys}
+\renewcommand*\showkeyslabelformat[1]{\tiny(#1)\normalsize}
+    \end{verbatim}
+    \normalsize
+fügt Labelnamen an den gelabeleten Stellen ein, aber f***s up amsthm
+\end{frame}
+
+\begin{frame}[fragile]{Nochmal organisieren}
+    \footnotesize
+    \begin{verbatim}
+\usepackage{environ} % just removes the proofs
+\NewEnviron{killcontents}{}{}
+\let\proof\killcontents
+\let\endproof\endkillcontents
+    \end{verbatim}
+    \normalsize
+versteckt die Beweise angenehm zum neu Strukturieren der Arbeit
 \end{frame}
 
 \begin{frame}[fragile]{Für die Typesetting-Nerds ;-)}

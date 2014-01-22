@@ -49,6 +49,9 @@
 *** %\usepackage{showframe}
 ** THINGS TO KNOW
 *** Latex usepackages can conflict depending on the sequence you import them
+** crazy long enquations !!
+** newcommands
+** floating environments
 * RESEARCH
 ** use libgen.info
 ** use bookfi.com
